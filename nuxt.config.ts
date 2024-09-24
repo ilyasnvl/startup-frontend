@@ -3,6 +3,9 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
   modules: ['@nuxtjs/tailwindcss', '@sidebase/nuxt-auth'],
+  typescript: {
+    strict: true // atau false, tergantung kebutuhan
+  },
 
   auth: {
     isEnabled: true,
