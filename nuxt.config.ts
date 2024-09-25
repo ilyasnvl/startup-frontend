@@ -8,7 +8,10 @@ export default defineNuxtConfig({
   },
   ssr: true, // jika menggunakan SSR
   nitro: {
-    preset: 'vercel'
+    preset: 'vercel',
+    externals: {
+      traceInclude: ['requrl'],
+    }
   },
 
   auth: {
