@@ -1,0 +1,1 @@
+import{_ as c,c as s,b as o,o as t,a5 as n}from"./DpY7Jxqy.js";const _={},a={class:"success-page"};function r(p,u){const e=n;return t(),s("div",a,[o(e)])}const f=c(_,[["render",r]]);export{f as default};

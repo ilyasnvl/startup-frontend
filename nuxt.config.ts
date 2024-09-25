@@ -6,6 +6,10 @@ export default defineNuxtConfig({
   typescript: {
     strict: true // atau false, tergantung kebutuhan
   },
+  ssr: true, // jika menggunakan SSR
+  nitro: {
+    preset: 'vercel'
+  },
 
   auth: {
     isEnabled: true,
