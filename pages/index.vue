@@ -197,7 +197,7 @@
 
 const { data: campaigns, error } = await useAsyncData('campaigns', () => 
   $fetch('/api/v1/campaigns', {
-    baseURL: process.env.BASE_URL
+    baseURL: useRuntimeConfig().public.baseURL
   }),
 )
 if (error.value) {

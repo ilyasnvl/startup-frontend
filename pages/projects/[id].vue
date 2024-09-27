@@ -150,7 +150,7 @@ const campaignId = route.params.id
 //const cleanData = (data) => JSON.parse(JSON.stringify(data))
 
 const { data: campaign } = await useAsyncData('campaign', () =>
-  fetch('http://localhost:8080/api/v1/campaigns/' + campaignId, {
+  fetch('/api/v1/campaigns/' + campaignId, {
     baseURL: useRuntimeConfig().public.baseURL,
   }).then(res => res.json())
 )
@@ -177,7 +177,7 @@ const fund = async () => {
       return
     }
 
-    const response = await $fetch('http://localhost:8080/api/v1/transactions', {
+    const response = await $fetch('/api/v1/transactions', {
       method: 'POST',
       body: {
         amount: transactions.value.amount,
