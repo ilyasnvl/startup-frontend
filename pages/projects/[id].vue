@@ -150,7 +150,7 @@ const campaignId = route.params.id
 //const cleanData = (data) => JSON.parse(JSON.stringify(data))
 
 const { data: campaign } = await useAsyncData('campaign', () =>
-  fetch('/api/v1/campaigns/' + campaignId, {
+  fetch('https://startup-go-production.up.railway.app/api/v1/campaigns/' + campaignId, {
     baseURL: useRuntimeConfig().public.baseURL,
   }).then(res => res.json())
 )
