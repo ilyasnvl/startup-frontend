@@ -92,7 +92,7 @@ export default NuxtAuthHandler({
       authorize: async(credentials: any) => {
         try {
           // Kirim permintaan ke backend Go
-          const res = await fetch('http://localhost:8080/api/v1/sessions', {
+          const res = await fetch('/api/v1/sessions', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
