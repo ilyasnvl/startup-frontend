@@ -177,7 +177,7 @@ const fund = async () => {
       return
     }
 
-    const response = await $fetch('/api/v1/transactions', {
+    const response = await $fetch('https://startup-go-production.up.railway.app/api/v1/transactions', {
       method: 'POST',
       body: {
         amount: transactions.value.amount,
