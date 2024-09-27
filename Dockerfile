@@ -1,5 +1,5 @@
 # Define args to use throughout the file
-ARG NODE_VERSION=20.13.0
+ARG NODE_VERSION=20.15.0
 ARG PORT=3000
 
 # Define the base image to use for the build
