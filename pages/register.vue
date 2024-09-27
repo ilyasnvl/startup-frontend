@@ -110,7 +110,7 @@ const { signIn } = useAuth()
 
 const register = async () => {
   try {
-    const response = await $fetch('/api/v1/users', {
+    const response = await $fetch(`${useRuntimeConfig().public.baseURL}/api/v1/users`, {
       method: 'POST',
       body: JSON.stringify({
         name: form.value.name,

@@ -150,9 +150,7 @@ const campaignId = route.params.id
 //const cleanData = (data) => JSON.parse(JSON.stringify(data))
 
 const { data: campaign } = await useAsyncData('campaign', () =>
-  fetch(`${useRuntimeConfig().public.baseURL}/api/v1/campaigns/${campaignId}`, {
-    baseURL: useRuntimeConfig().public.baseURL,
-  }).then(res => res.json())
+  fetch(`${useRuntimeConfig().public.baseURL}/api/v1/campaigns/${campaignId}`).then(res => res.json())
 )
 // console.log(campaign.value)
 console.log(campaign.value.data)
@@ -177,7 +175,7 @@ const fund = async () => {
       return
     }
 
-    const response = await $fetch('https://startup-go-production.up.railway.app/api/v1/transactions', {
+    const response = await $fetch(`${useRuntimeConfig().public.baseURL}/api/v1/transactions`, {
       method: 'POST',
       body: {
         amount: transactions.value.amount,

@@ -196,9 +196,8 @@
 <script setup>
 
 const { data: campaigns, error } = await useAsyncData('campaigns', () => 
-  $fetch('/api/v1/campaigns', {
-    baseURL: useRuntimeConfig().public.baseURL
-  }),
+  $fetch(`${useRuntimeConfig().public.baseURL}/api/v1/campaigns`
+  ),
 )
 if (error.value) {
   console.error('Error fetching campaigns:', error.value)

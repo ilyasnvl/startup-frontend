@@ -103,7 +103,7 @@ const uploadAvatar = async () => {
     }
 
     // Ganti URL di sini sesuai dengan endpoint upload avatar
-    const response = await $fetch('/api/v1/avatars', {
+    const response = await $fetch(`${useRuntimeConfig().public.baseURL}/api/v1/avatars`, {
       method: 'POST',
       body: formData,
       headers: {
