@@ -13,8 +13,8 @@ export default defineNuxtConfig({
 
   auth: {
     isEnabled: true,
-    originEnvKey: 'AUTH_ORIGIN' || 'https://startup-frontend-production.up.railway.app',
-    baseURL: 'AUTH_ORIGIN',
+    origin: process.env.AUTH_ORIGIN || 'https://startup-frontend-production.up.railway.app',
+    baseURL: process.env.AUTH_ORIGIN,
     provider: {
       type: 'authjs'
     },
@@ -25,8 +25,8 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      authSecret: 'AUTH_SECRET' || 'BWASTARTUP_s3r3t_k3y',
-      baseURL: 'BASE_URL' || 'https://startup-go-production.up.railway.app'// URL backend Anda
+      authSecret: process.env.AUTH_SECRET || 'BWASTARTUP_s3r3t_k3y',
+      baseURL: process.env.BASE_URL || 'https://startup-go-production.up.railway.app'// URL backend Anda
     }
   },
 
