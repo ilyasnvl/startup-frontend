@@ -14,6 +14,7 @@ export default defineNuxtConfig({
   auth: {
     isEnabled: true,
     originEnvKey: 'AUTH_ORIGIN',
+    baseURL: process.env.AUTH_ORIGIN || 'https://startup-frontend-production.up.railway.app',
     provider: {
       type: 'authjs'
     },
