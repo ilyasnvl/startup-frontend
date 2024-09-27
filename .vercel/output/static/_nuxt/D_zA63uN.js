@@ -1,1 +1,0 @@
-import{_ as o,c as a,b as s,a4 as c,o as n,a5 as _}from"./DpY7Jxqy.js";const r={},d={class:"auth-page"};function l(e,u){const t=_;return n(),a("div",d,[s(t),c(e.$slots,"default")])}const p=o(r,[["render",l]]);export{p as default};

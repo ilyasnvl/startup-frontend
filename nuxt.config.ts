@@ -13,7 +13,7 @@ export default defineNuxtConfig({
 
   auth: {
     isEnabled: true,
-    origin: process.env.AUTH_ORIGIN || 'https://startup-frontend-production.up.railway.app',
+    originEnvKey: process.env.AUTH_ORIGIN || 'https://startup-frontend-production.up.railway.app',
     baseURL: process.env.AUTH_ORIGIN,
     provider: {
       type: 'authjs'
