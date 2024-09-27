@@ -4182,12 +4182,12 @@ const _inlineRuntimeConfig = {
   },
   "public": {
     "authSecret": "BWASTARTUP_s3r3t_k3y",
-    "baseURL": "http://localhost:8080",
+    "baseURL": "startup-go-production.up.railway.app",
     "auth": {
       "computed": {
-        "origin": "http://localhost:3000",
+        "origin": "https://startup-frontend-production.up.railway.app",
         "pathname": "/api/auth",
-        "fullBaseUrl": "http://localhost:3000/api/auth"
+        "fullBaseUrl": "https://startup-frontend-production.up.railway.app/api/auth"
       },
       "isEnabled": true,
       "disableServerSideAuth": false,
@@ -4202,7 +4202,7 @@ const _inlineRuntimeConfig = {
         "allow404WithoutAuth": true,
         "addDefaultCallbackUrl": true
       },
-      "baseURL": "http://localhost:3000",
+      "baseURL": "https://startup-frontend-production.up.railway.app",
       "provider": {
         "type": "authjs",
         "trustHost": false,
