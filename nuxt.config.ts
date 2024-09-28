@@ -14,7 +14,7 @@ export default defineNuxtConfig({
   auth: {
     isEnabled: true,
     originEnvKey: 'AUTH_ORIGIN',
-    baseURL: process.env.AUTH_ORIGIN || 'https://startup-frontend-production.up.railway.app',
+    baseURL: process.env.AUTH_ORIGIN || 'https://crowdfundingily.up.railway.app',
     provider: {
       type: 'authjs'
     },
@@ -30,9 +30,9 @@ export default defineNuxtConfig({
     },
     auth: {
       computed: {
-        origin: process.env.AUTH_ORIGIN || 'https://startup-frontend-production.up.railway.app',
+        origin: process.env.AUTH_ORIGIN || 'https://crowdfundingily.up.railway.app',
         pathname: '/api/auth',
-        fullBaseUrl: `${process.env.AUTH_ORIGIN || 'https://startup-frontend-production.up.railway.app'}/api/auth`
+        fullBaseUrl: `${process.env.AUTH_ORIGIN || 'https://crowdfundingily.up.railway.app'}/api/auth`
       },
       isEnabled: true,
       originEnvKey: 'AUTH_ORIGIN',
