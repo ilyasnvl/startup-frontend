@@ -22,7 +22,7 @@ export default NuxtAuthHandler({
       authorize: async(credentials: any) => {
         try {
           // Kirim permintaan ke backend Go
-          const res = await fetch('https://startup-go-production.up.railway.app/api/v1/sessions', {
+          const res = await fetch(`${useRuntimeConfig().public.baseURL}/api/v1/sessions`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
