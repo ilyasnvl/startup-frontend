@@ -28,15 +28,15 @@ export default defineNuxtConfig({
       authSecret: process.env.AUTH_SECRET || 'BWASTARTUP_s3r3t_k3y',
       baseURL: process.env.BASE_URL // URL backend Anda
     },
-    auth: {
-      computed: {
-        origin: process.env.AUTH_ORIGIN ,
-        pathname: '/api/auth',
-        fullBaseUrl: `${process.env.AUTH_ORIGIN}/api/auth`
-      },
-      isEnabled: true,
-      originEnvKey: 'AUTH_ORIGIN',
-    }
+    // auth: {
+    //   computed: {
+    //     origin: process.env.AUTH_ORIGIN ,
+    //     pathname: '/api/auth',
+    //     fullBaseUrl: `${process.env.AUTH_ORIGIN}/api/auth`
+    //   },
+    //   isEnabled: true,
+    //   originEnvKey: 'AUTH_ORIGIN',
+    // }
   },
 
   css: ['~/assets/css/tailwind.css'],
