@@ -143,11 +143,8 @@
 <script setup>
 
 const route = useRoute()
-const { status } = useAuth()
-const { data: session } = useAuth()
+const { status, data: session } = useAuth()
 const campaignId = route.params.id
-
-//const cleanData = (data) => JSON.parse(JSON.stringify(data))
 
 const { data: campaign } = await useAsyncData('campaign', () =>
   fetch(`${useRuntimeConfig().public.baseURL}/api/v1/campaigns/${campaignId}`).then(res => res.json())
@@ -196,17 +193,13 @@ const fund = async () => {
   }
 }
 
-console.log('access token:: ', session.value.accessToken)
 
-// Cek perubahan session dan lakukan log jika berubah
-// watch(session, (newSession) => {
-//   console.log('Session Updated:', newSession)
-// })
-
+// Ganti gambar saat thumbnail diklik
 const changeImage = (url) => {
   defaultImage.value = url
 }
 
+// Set gambar default saat komponen di-moun
 onMounted(() => {
   if (campaign.value && campaign.value.data.image_url) {
     defaultImage.value = useRuntimeConfig().public.baseURL + '/' + campaign.value.data.image_url
