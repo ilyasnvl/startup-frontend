@@ -43,6 +43,7 @@ export default NuxtAuthHandler({
               email: credentials.email,
               name: data.data.name,
               image_url: data.data.image_url,
+              id: data.data.id,
             };
           } else {
             return null;
@@ -61,6 +62,7 @@ export default NuxtAuthHandler({
         token.accessToken = user.token;
         token.name = user.name;
         token.image_url = user.image_url;
+        token.user_id = user.id;
       }
       return token;
     },
@@ -69,6 +71,7 @@ export default NuxtAuthHandler({
         if (session.user) {
             session.user.name = token.name; // Tambahkan nama user ke session
             session.user.image_url = token.image_url; // Tambahkan URL gambar user ke session
+            session.user.user_id = token.user_id;
           }
       // Tambahkan token ke session
       session.accessToken = token.accessToken;

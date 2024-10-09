@@ -8,7 +8,8 @@
               best idea and innovation
             </h1>
             <button
-              @click="$router.push({ path: '/register' })"
+              v-if="status !== 'authenticated'"
+              @click="$router.push({ path: '/login' })"
               class="inline-block bg-orange-button hover:bg-green-button text-white font-semibold px-6 py-4 mt-8 text-lg rounded-full"
             >
               Getting Start
@@ -17,3 +18,8 @@
         </div>
     </section>
 </template>
+
+<script setup>
+const { status } = useAuth();
+
+</script>

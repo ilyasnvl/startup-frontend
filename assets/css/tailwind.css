@@ -148,3 +148,25 @@ footer {
   background-position: top right;
   background-repeat: no-repeat;
 }
+
+.ticker-container {
+  width: auto;
+  background-color: #f74940; /* Warna background kuning untuk warning */
+  display: inline-flex;
+  padding: 15px;
+  overflow: hidden;
+  position: relative;
+}
+
+.ticker {
+  display: inline-block;
+  white-space: nowrap;
+  position: absolute;
+  animation: tickerAnimation 10s linear infinite; /* Animasi ticker */
+}
+
+.ticker-text {
+  font-size: 18px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: #ecdddd; /* Warna merah untuk teks warning */
+}

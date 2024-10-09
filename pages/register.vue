@@ -10,6 +10,11 @@
             <h2 class="font-normal mb-6 text-3xl text-white">
               Sign Up Account
             </h2>
+            <div v-if="errorMessage" class="ticker-container rounded-lg">
+              <div>
+                <span class="ticker-text">{{ errorMessage }}</span>
+              </div>
+            </div>
             <div class="mb-6">
               <div class="mb-4">
                 <label class="font-normal text-lg text-white block mb-3"
@@ -89,9 +94,9 @@
 </template>
 
 <script setup>
-// definePageMeta({
-//   layout: 'auth',
-// })
+definePageMeta({
+  middleware: 'login-regist',
+})
 
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
@@ -155,14 +160,13 @@ const register = async () => {
         // Tangani jika sign in gagal
         errorMessage.value = signInResponse.error || 'Sign in gagal. Silakan coba lagi.';
       }
-      // useRouter().push('/upload')
     } else {
       // Handle API errors or response messages
       errorMessage.value = response.message || 'Registrasi gagal. Silakan coba lagi.';
     }
   } catch (error) {
     // Handle network errors or other unexpected errors
-    errorMessage.value = 'Terjadi kesalahan. Silakan coba lagi.';
+    errorMessage.value = 'Registrasi gagal. Silahkan coba lagi';
     console.error('Registrasi gagal:', error);
   }
 }

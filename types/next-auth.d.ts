@@ -7,6 +7,7 @@ declare module 'next-auth' {
     token?: string // Menambahkan properti token di User
     name?: string;
     image_url?: string;
+    user_id?: string
   }
 
   interface Session {
@@ -14,8 +15,40 @@ declare module 'next-auth' {
     user?: {
       name?: string;
       image_url?: string;
+      user_id?: string
     } & DefaultSession["user"];
   }
+
+  interface Campaign {
+    id: number;
+    name: string;
+    short_description: string;
+    description: string;
+    image_url: string;
+    goal_amount: number;
+    current_amount: number;
+    backer_count: number;
+    user_id: number;
+    slug: string;
+    perks: string[];
+    user: {
+      name: string;
+      image_url: string;
+    };
+    images: {
+      image_url: string;
+      is_primary: boolean;
+    }[];
+  }
+  
+  interface ApiResponse {
+    meta: {
+      message: string;
+      code: number;
+      status: string;
+    };
+    data: Campaign;
+  }  
 }
 
 // Perluas tipe JWT

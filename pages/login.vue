@@ -10,6 +10,11 @@
             <h2 class="font-normal mb-6 text-3xl text-white">
               Sign In to Your Account
             </h2>
+            <div v-if="error" class="ticker-container rounded-lg">
+              <div>
+                <span class="ticker-text">{{ error }}</span>
+              </div>
+            </div>
             <div class="mb-6">
               <div class="mb-4">
                 <label class="font-normal text-lg text-white block mb-3"
@@ -45,7 +50,6 @@
                 >
                   Sign In
                 </button>
-                <p v-if="error">{{ error }}</p>
               </div>
             </div>
             <div class="text-center">
@@ -64,6 +68,10 @@
 </template>
 
 <script setup>
+definePageMeta({
+  middleware: 'login-regist',
+})
+
 import { ref } from 'vue';
 
 const email = ref('');
@@ -79,7 +87,7 @@ const login = async () => {
   });
 
   if (response?.error) {
-    error.value = 'Login gagal. Silakan coba lagi.';
+    error.value = 'Sign In Gagal. Masukkan Email dan Password yang Benar';
   } else {
     // Redirect ke halaman setelah berhasil login
     error.value = '';
@@ -89,17 +97,9 @@ const login = async () => {
 </script>
 
 <style scoped>
-      .auth-background {
-        background-image: url("/sign-in-background.jpg");
-        background-position: center;
-        background-size: cover;
-      }
-</style>
-
-<style scoped>
-      .auth-background {
-        background-image: url("/sign-in-background.jpg");
-        background-position: center;
-        background-size: cover;
-      }
+  .auth-background {
+    background-image: url("/sign-in-background.jpg");
+    background-position: center;
+    background-size: cover;
+  }
 </style>

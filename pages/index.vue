@@ -17,7 +17,7 @@
                 a real product and be the contributor
               </p>
               <button
-                @click="$router.push({ path: '/' })"
+                @click="$router.push({ path: '/projects/all-campaigns' })"
                 class="block bg-orange-button hover:bg-green-button text-white font-semibold px-12 py-3 text-xl rounded-full"
               >
                 Find a Project
@@ -81,7 +81,7 @@
           </div>
         </div>
       </section>
-      <section class="container mx-auto pt-24 px-20">
+      <section id="campaign-project" class="container mx-auto pt-24 px-20">
         <div class="flex justify-between items-center">
           <div class="w-auto">
             <h2 class="text-3xl text-gray-900 mb-8">
@@ -90,14 +90,16 @@
             </h2>
           </div>
           <div class="w-auto mt-5">
-            <a class="text-gray-900 hover:underline text-md font-medium" href=""
-              >View All</a
-            >
+            <NuxtLink 
+              @click="$router.push({ path: '/projects/all-campaigns'})"
+              class="text-blue-900 font-bold hover:underline text-md" href="#"
+              >View All Projects
+            </NuxtLink>
           </div>
         </div>
         <div class="grid grid-cols-3 gap-4 mt-3">
           <div
-            v-for="campaign in campaigns.data" :key="campaign.id" 
+            v-for="campaign in displayedCampaigns" :key="campaign.id" 
             class="card-project w-full p-5 border border-gray-500 rounded-20">
             <div class="item">
               <figure class="item-image">
@@ -140,6 +142,17 @@
             </button>
             </div>
           </div>
+        </div>
+        <div>
+          <button
+            v-if="campaigns.data.length > 6"
+            @click="$router.push({
+            path: '/projects/all-campaigns' 
+            })"
+            class="text-center mt-10 button-cta block mx-auto w-1/3 bg-blue-300 hover:bg-blue-700 text-white font-semibold px-6 py-2 text-lg rounded-full"
+            >
+            More Projects >>
+          </button>
         </div>
       </section>
       <section class="container mx-auto pt-24 px-20">
@@ -202,6 +215,13 @@ const { data: campaigns, error } = await useAsyncData('campaigns', () =>
 if (error.value) {
   console.error('Error fetching campaigns:', error.value)
 }
+
+// Sort campaigns by newest and limit to 6
+const displayedCampaigns = computed(() => {
+  return campaigns.value?.data
+    .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+    .slice(0, 6) || [];
+});
 
 </script>
 

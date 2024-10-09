@@ -34,40 +34,46 @@
         </div>
         <hr />
         <div class="block mb-2">
-          <div class="w-full lg:max-w-full lg:flex mb-4" v-for="i in 5" :key="i">
+          <div class="w-full lg:max-w-full lg:flex mb-4" v-for="campaign in campaigns.data" :key="campaign.id">
             <div
-              class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
-              style="
-                background-image: url('https://tailwindcss.com/img/card-left.jpg');
-              "
+              class="border h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
+              :style="'background-color: #bbb; background-position: center; background-image: url(\'' + 
+              useRuntimeConfig().public.baseURL + 
+              '/' + 
+              campaign.image_url + 
+              '\')'"
             ></div>
-            <div
-              class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-8 flex flex-col justify-between leading-normal"
+            <NuxtLink
+            :to="'/dashboard/projects/' + campaign.id"
+              class="w-full border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-8 flex flex-col justify-between leading-normal"
             >
               <div class="mb-8">
                 <div class="text-gray-900 font-bold text-xl mb-1">
-                  Cari Uang Buat Gunpla
+                  {{ campaign.name }}
                 </div>
                 <p class="text-sm text-gray-600 flex items-center mb-2">
-                  Rp. 200.000.000 &middot; 80%
+                  Rp. {{ new Intl.NumberFormat().format(campaign.goal_amount) }} 
+                  &middot; 
+                  {{ (campaign.current_amount / campaign.goal_amount) * 100 }}%
                 </p>
                 <p class="text-gray-700 text-base">
-                  With N-key rollover (NKRO on wired mode only) you can register
-                  as many keys as you can press at once without missing out
-                  characters. It allows to use all the same media keys as
-                  conventional macOS.
+                  {{ campaign.short_description }}
                 </p>
               </div>
               <div class="flex items-center">
-                <NuxtLink
-                  :to="'/dashboard/projects/' + i"
+                <button
                   class="bg-green-button text-white py-2 px-4 rounded"
                 >
                   Detail
-                </NuxtLink>
+                </button>
               </div>
-            </div>
+            </NuxtLink>
           </div>
+        </div>
+        <div 
+          v-if="campaigns.data.length === 0"
+          class="no-projects">
+          Belum ada Campaign
         </div>
       </section>
       <div class="cta-clip -mt-20"></div>
@@ -75,3 +81,40 @@
       <Footer />
     </div>
 </template>
+
+<script setup>
+
+import { useFetch, useAuth } from '#imports'
+
+// Mengambil data user dari Nuxt Auth
+const { data: authData, status } = useAuth()
+
+// Menunggu data kampanye yang difetch dari API
+const { data: campaigns } = await useAsyncData('campaigns', () => {
+
+  // Mengecek apakah user sudah terotentikasi dan user ID tersedia
+  if (status.value === 'authenticated' || authData.value?.user?.user_id) {
+    const userId = authData.value.user.user_id
+  
+    return $fetch(`${useRuntimeConfig().public.baseURL}/api/v1/campaigns?user_id=${userId}`)
+  }
+  return null // Tidak melakukan fetch jika belum terotentikasi
+})
+
+definePageMeta({
+  middleware: 'auth'
+})
+</script>
+
+<style scoped>
+.no-projects {
+  padding: 16px;
+  background-color: #f8d7da; /* Warna latar belakang merah muda lembut */
+  border: 1px solid #f5c6cb; /* Border dengan warna merah lembut */
+  border-radius: 8px; /* Sudut melengkung */
+  color: #721c24; /* Warna teks merah tua */
+  text-align: center; /* Teks rata tengah */
+  font-weight: bold; /* Gaya teks tebal */
+  margin-top: 20px; /* Memberi jarak atas */
+}
+</style>

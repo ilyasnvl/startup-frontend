@@ -1,5 +1,5 @@
 <template>
-  <header class="sticky top-0 z-50 bg-blue-700 py-3 flex items-center">
+  <header class="sticky top-0 z-50 bg-blue-700 py-1 flex items-center">
     <div class="container mx-auto flex items-center ">
     <div style="height: 54px" class="pr-5">
       <img src="/logo.svg" alt="logo" class="h-full" />
@@ -12,27 +12,27 @@
         >Home</NuxtLink>
       </li>
       <li>
-        <a
+        <NuxtLink
           class="text-white hover:text-teal-500 text-lg px-4 py-3"
-          href="/projects.html"
-        >Project</a>
+          to="/projects/all-campaigns"
+        >Projects</NuxtLink>
       </li>
       <li>
         <a
           class="text-white hover:text-teal-500 text-lg px-4 py-3"
-          href="/features.html"
+          href="#"
         >Features</a>
       </li>
       <li>
         <a
           class="text-white hover:text-teal-500 text-lg px-4 py-3"
-          href="/story.html"
+          href="#"
         >Success Stories</a>
       </li>
     </ul>
 
     <!-- Tampilkan Sign Up dan My Account jika user belum login -->
-    <ul class="flex ml-auto items-center mt-2" v-if="status !== 'authenticated'">
+    <ul class="flex ml-auto items-center mt-0" v-if="status !== 'authenticated'">
       <li>
         <NuxtLink
           to="/register"
