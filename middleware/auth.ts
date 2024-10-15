@@ -51,6 +51,8 @@ interface Campaign {
           }
         })
       );
+
+      console.log('campaign error: ', campaignResponse.value)
   
       // Cek apakah campaign tidak ditemukan
       if (!campaignResponse.value || !campaignResponse.value.data) {
